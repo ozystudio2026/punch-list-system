@@ -40,7 +40,13 @@ const nextConfig = {
 
   // 重定向
   async redirects() {
-    return [];
+    return [
+      {
+        source: "/",
+        destination: "/auth/login",
+        permanent: false,
+      },
+    ];
   },
 
   // 自訂 headers
