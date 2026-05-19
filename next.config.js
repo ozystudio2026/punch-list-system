@@ -35,13 +35,8 @@ const nextConfig = {
     isrMemoryCacheSize: 0,
   },
   
-  // 禁用静态預渲染
+  // 禁用靜態預渲染
   staticPageGenerationTimeout: 0,
-  
-  // 禁用 ISR 預渲染
-  isr: {
-    maxMemoryCacheSize: 0,
-  }
 
   // 重定向
   async redirects() {

@@ -3,6 +3,6 @@
   "/auth/callback/route": "app/auth/callback/route.js",
   "/page": "app/page.js",
   "/projects/page": "app/projects/page.js",
-  "/auth/login/page": "app/auth/login/page.js",
-  "/auth/signup/page": "app/auth/signup/page.js"
+  "/auth/signup/page": "app/auth/signup/page.js",
+  "/auth/login/page": "app/auth/login/page.js"
 }

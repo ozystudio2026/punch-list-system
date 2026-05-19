@@ -1,7 +1,16 @@
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
 export default function Home() {
-  redirect('/auth/login')
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/auth/login')
+  }, [router])
+
+  return null
 }
