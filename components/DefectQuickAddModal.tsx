@@ -108,7 +108,7 @@ export default function DefectQuickAddModal({
               <p className="text-gray-600">現場快速拍照記錄缺失</p>
               <PhotoUpload
                 onPhotosSelected={handleAddPhotos}
-                maxPhotos={10}
+                maxFiles={10}
               />
 
               {/* 已上傳照片預覽 */}

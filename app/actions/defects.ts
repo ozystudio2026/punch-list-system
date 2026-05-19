@@ -9,7 +9,7 @@ type DefectPhoto = Database['public']['Tables']['defect_photos']['Row']
 
 // 取得案件的所有缺失
 export async function getDefectsByProject(projectId: string) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   const { data, error } = await supabase
     .from('defects')
@@ -31,7 +31,7 @@ export async function getDefectsByProject(projectId: string) {
 
 // 取得單個缺失詳情
 export async function getDefectById(defectId: string) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   const { data, error } = await supabase
     .from('defects')
@@ -61,7 +61,7 @@ export async function createDefectQuick(defectData: {
   deadline?: string
   contractorId?: string
 }) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   const {
     data: { user },
@@ -101,7 +101,7 @@ export async function updateDefectStatus(
   defectId: string,
   status: 'pending' | 'in_progress' | 'completed' | 'verified' | 'overdue'
 ) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   const {
     data: { user },
@@ -142,7 +142,7 @@ export async function updateDefectStatus(
 
 // 更新缺失詳情
 export async function updateDefect(defectId: string, updates: Partial<DefectInsert>) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   const { data, error } = await supabase
     .from('defects')
@@ -160,7 +160,7 @@ export async function updateDefect(defectId: string, updates: Partial<DefectInse
 
 // 刪除缺失
 export async function deleteDefect(defectId: string) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   const { error } = await supabase
     .from('defects')
@@ -180,7 +180,7 @@ export async function uploadDefectPhoto(
   file: File,
   photoType: 'before' | 'after' | 'progress' = 'before'
 ) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   const {
     data: { user },
@@ -229,7 +229,7 @@ export async function uploadDefectPhoto(
 
 // 刪除缺失照片
 export async function deleteDefectPhoto(photoId: string) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   // 1. 取得照片資訊
   const { data: photo } = await supabase
@@ -260,7 +260,7 @@ export async function deleteDefectPhoto(photoId: string) {
 
 // 取得逾期缺失
 export async function getOverdueDefects(projectId: string) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   const { data, error } = await supabase
     .from('defects')
@@ -278,7 +278,7 @@ export async function getOverdueDefects(projectId: string) {
 
 // 取得即將到期的缺失（7 天內）
 export async function getUpcomingDefects(projectId: string) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   const today = new Date()
   const sevenDaysLater = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)
@@ -303,7 +303,7 @@ export async function batchUpdateDefectsStatus(
   defectIds: string[],
   status: 'pending' | 'in_progress' | 'completed' | 'verified'
 ) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = await createServerClient()
 
   const { error } = await supabase
     .from('defects')

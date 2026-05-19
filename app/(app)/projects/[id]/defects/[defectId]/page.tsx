@@ -161,7 +161,7 @@ export default function DefectDetailPage() {
               <h2 className="text-lg font-bold mb-4">現場照片</h2>
               <PhotoGallery
                 photos={defect.photos}
-                onPhotoSelect={setSelectedPhoto}
+                onPhotoSelect={(photo) => setSelectedPhoto(photo.file_path)}
               />
 
               {/* 照片詳情 */}

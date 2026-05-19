@@ -259,7 +259,7 @@ export default function ProjectDetailPage() {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 mb-1">案場地址</p>
-                    <p className="font-semibold text-sm">{project.client_address}</p>
+                    <p className="font-semibold text-sm">{project.address}</p>
                   </div>
                 </div>
               </div>
