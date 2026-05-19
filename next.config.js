@@ -32,17 +32,20 @@ const nextConfig = {
   // 實驗性功能
   experimental: {
     optimizePackageImports: ["@supabase/supabase-js"],
+    isrMemoryCacheSize: 0,
   },
+  
+  // 禁用静态預渲染
+  staticPageGenerationTimeout: 0,
+  
+  // 禁用 ISR 預渲染
+  isr: {
+    maxMemoryCacheSize: 0,
+  }
 
   // 重定向
   async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/dashboard",
-        permanent: false,
-      },
-    ];
+    return [];
   },
 
   // 自訂 headers
