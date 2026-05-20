@@ -8,10 +8,10 @@ interface DefectListProps {
   onDelete: (id: string) => void;
 }
 
-const statusColors = {
-  pending: 'bg-yellow-50 border-yellow-200 text-yellow-700',
-  completed: 'bg-green-50 border-green-200 text-green-700',
-  overdue: 'bg-red-50 border-red-200 text-red-700',
+const statusBadgeColors = {
+  pending: 'badge-warning',
+  completed: 'badge-success',
+  overdue: 'badge-error',
 };
 
 const statusLabels = {
@@ -39,24 +39,33 @@ export default function DefectList({
       {defects.map((defect, index) => (
         <div
           key={defect.id}
-          className={`border p-6 ${statusColors[defect.status]}`}
+          className={`card-white border-l-4 ${
+            defect.status === 'completed'
+              ? 'border-l-green-500'
+              : defect.status === 'overdue'
+              ? 'border-l-red-500'
+              : 'border-l-yellow-500'
+          }`}
         >
-          <div className="flex justify-between items-start mb-4">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-sm font-semibold text-gray-600">
-                  {String(index + 1).padStart(2, '0')}
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4 pb-4 border-b border-gray-100">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline gap-3 mb-2">
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-wide">
+                  #{String(index + 1).padStart(2, '0')}
                 </span>
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-gray-900 truncate">
                   {defect.title}
                 </h3>
               </div>
               <p className="text-sm text-gray-600">位置：{defect.location}</p>
             </div>
-            <div className="flex gap-2">
+
+            {/* Actions */}
+            <div className="flex gap-2 self-start md:self-auto">
               <button
                 onClick={() => onEdit(defect)}
-                className="px-3 py-1 text-sm border border-current rounded hover:opacity-70 transition-opacity"
+                className="btn btn-secondary btn-sm"
               >
                 編輯
               </button>
@@ -66,47 +75,51 @@ export default function DefectList({
                     onDelete(defect.id);
                   }
                 }}
-                className="px-3 py-1 text-sm border border-red-300 text-red-600 rounded hover:bg-red-50 transition-colors"
+                className="btn btn-secondary btn-sm text-red-600 hover:bg-red-50"
               >
                 刪除
               </button>
             </div>
           </div>
 
+          {/* Status Badges */}
           <div className="flex flex-wrap gap-2 mb-4">
-            <span className="inline-block px-3 py-1 bg-white bg-opacity-50 rounded text-sm font-medium">
+            <span className={`badge ${statusBadgeColors[defect.status]}`}>
               {statusLabels[defect.status]}
             </span>
-            <span className="inline-block px-3 py-1 bg-white bg-opacity-50 rounded text-sm font-medium">
+            <span className="badge badge-neutral">
               {severityLabels[defect.severity]}
             </span>
             {isOverdue(defect.deadline) && defect.status !== 'completed' && (
-              <span className="inline-block px-3 py-1 bg-red-200 text-red-800 rounded text-sm font-medium">
-                逾期未改善
+              <span className="badge badge-error">
+                ⚠️ 逾期未改善
               </span>
             )}
           </div>
 
-          <div className="space-y-2 text-sm">
-            <p>
-              <span className="text-gray-600">改善期限：</span>
-              <span className="font-medium">
+          {/* Details */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">改善期限</p>
+              <p className="font-semibold text-gray-900">
                 {new Date(defect.deadline).toLocaleDateString('zh-TW')}
-              </span>
-            </p>
+              </p>
+            </div>
+
             {defect.notes && (
-              <p>
-                <span className="text-gray-600">備註：</span>
-                <span className="font-medium">{defect.notes}</span>
-              </p>
+              <div className="md:col-span-2">
+                <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">備註</p>
+                <p className="text-gray-700">{defect.notes}</p>
+              </div>
             )}
+
             {defect.completedAt && (
-              <p>
-                <span className="text-gray-600">完成時間：</span>
-                <span className="font-medium">
+              <div>
+                <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">完成時間</p>
+                <p className="font-semibold text-green-600">
                   {new Date(defect.completedAt).toLocaleDateString('zh-TW')}
-                </span>
-              </p>
+                </p>
+              </div>
             )}
           </div>
         </div>

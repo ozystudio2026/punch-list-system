@@ -36,73 +36,65 @@ export default function ProjectForm({ onSubmit, onCancel }: ProjectFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-900 mb-2">
-          案名 *
-        </label>
+        <label className="label">案名 *</label>
         <input
           type="text"
           required
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full px-4 py-2 border border-gray-300 rounded text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-900"
+          className="input"
           placeholder="例：台北市信義路辦公室"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-900 mb-2">
-          業主姓名 *
-        </label>
+        <label className="label">業主姓名 *</label>
         <input
           type="text"
           required
           value={formData.owner}
           onChange={(e) => setFormData({ ...formData, owner: e.target.value })}
-          className="w-full px-4 py-2 border border-gray-300 rounded text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-900"
+          className="input"
           placeholder="例：王小姐"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-900 mb-2">
-          地址 *
-        </label>
+        <label className="label">地址 *</label>
         <input
           type="text"
           required
           value={formData.address}
           onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-          className="w-full px-4 py-2 border border-gray-300 rounded text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-900"
+          className="input"
           placeholder="例：台北市信義區信義路五段"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-900 mb-2">
-          驗收日期 *
-        </label>
+        <label className="label">驗收日期 *</label>
         <input
           type="date"
           required
           value={formData.inspectionDate}
           onChange={(e) => setFormData({ ...formData, inspectionDate: e.target.value })}
-          className="w-full px-4 py-2 border border-gray-300 rounded text-gray-900 focus:outline-none focus:border-gray-900"
+          className="input"
         />
       </div>
 
       <div className="flex gap-3 pt-4">
         <button
-          type="submit"
-          className="flex-1 px-4 py-3 bg-gray-900 text-white font-medium hover:bg-gray-800 transition-colors"
-        >
-          建立案件
-        </button>
-        <button
           type="button"
           onClick={onCancel}
-          className="flex-1 px-4 py-3 border border-gray-300 text-gray-900 font-medium hover:bg-gray-50 transition-colors"
+          className="btn btn-secondary flex-1"
         >
           取消
+        </button>
+        <button
+          type="submit"
+          className="btn btn-primary flex-1"
+        >
+          建立案件
         </button>
       </div>
     </form>

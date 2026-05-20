@@ -66,76 +66,83 @@ export default function ProjectDetail({
 
   return (
     <main className="min-h-screen bg-beige-50">
-      <div className="max-w-4xl mx-auto p-4 md:p-6">
+      <div className="container py-8 md:py-12">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <button
-              onClick={onBack}
-              className="text-gray-600 hover:text-gray-900 mb-4 font-medium"
-            >
-              ← 返回
-            </button>
-            <h1 className="text-3xl font-bold text-gray-900">{project.name}</h1>
-            <p className="text-gray-600 mt-1">{project.owner}</p>
-          </div>
+        <div className="mb-8 md:mb-12">
           <button
-            onClick={handleDeleteProject}
-            className="px-4 py-2 text-red-600 hover:bg-red-50 border border-red-200 rounded transition-colors"
+            onClick={onBack}
+            className="text-sm text-gray-500 hover:text-gray-900 mb-6 font-medium uppercase tracking-wide"
           >
-            刪除案件
+            ← 返回列表
           </button>
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                {project.name}
+              </h1>
+              <p className="text-gray-600">{project.owner}</p>
+            </div>
+            <button
+              onClick={handleDeleteProject}
+              className="btn btn-secondary btn-sm self-start md:self-auto"
+            >
+              刪除案件
+            </button>
+          </div>
         </div>
 
-        {/* Project Info */}
-        <div className="bg-white border border-gray-200 p-6 mb-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+        {/* Project Info Card */}
+        <div className="card-white mb-8 md:mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             <div>
-              <p className="text-sm text-gray-600 mb-1">地址</p>
-              <p className="font-medium text-gray-900">{project.address}</p>
+              <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">地址</p>
+              <p className="font-semibold text-gray-900">{project.address}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 mb-1">驗收日期</p>
-              <p className="font-medium text-gray-900">
+              <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">驗收日期</p>
+              <p className="font-semibold text-gray-900">
                 {new Date(project.inspectionDate).toLocaleDateString('zh-TW')}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 mb-1">完成度</p>
-              <p className="font-medium text-gray-900">
+              <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">完成度</p>
+              <p className="text-2xl font-bold text-gray-900">
                 {stats.total === 0 ? '0' : Math.round((stats.completed / stats.total) * 100)}%
               </p>
             </div>
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white border border-gray-200 p-4 text-center">
-            <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
-            <p className="text-sm text-gray-600">全部缺失</p>
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 md:mb-12">
+          <div className="card-white text-center">
+            <p className="text-3xl font-bold text-gray-900 mb-1">{stats.total}</p>
+            <p className="text-xs text-gray-500 uppercase tracking-wide">全部缺失</p>
           </div>
-          <div className="bg-white border border-gray-200 p-4 text-center">
-            <p className="text-2xl font-bold text-green-600">{stats.completed}</p>
-            <p className="text-sm text-gray-600">已完成</p>
+          <div className="card-white text-center">
+            <p className="text-3xl font-bold text-green-600 mb-1">{stats.completed}</p>
+            <p className="text-xs text-gray-500 uppercase tracking-wide">已完成</p>
           </div>
-          <div className="bg-white border border-gray-200 p-4 text-center">
-            <p className="text-2xl font-bold text-yellow-600">{stats.pending}</p>
-            <p className="text-sm text-gray-600">待改善</p>
+          <div className="card-white text-center">
+            <p className="text-3xl font-bold text-yellow-600 mb-1">{stats.pending}</p>
+            <p className="text-xs text-gray-500 uppercase tracking-wide">待改善</p>
           </div>
-          <div className="bg-white border border-gray-200 p-4 text-center">
-            <p className="text-2xl font-bold text-red-600">{stats.overdue}</p>
-            <p className="text-sm text-gray-600">逾期</p>
+          <div className="card-white text-center">
+            <p className="text-3xl font-bold text-red-600 mb-1">{stats.overdue}</p>
+            <p className="text-xs text-gray-500 uppercase tracking-wide">逾期</p>
           </div>
         </div>
 
         {/* Defects Section */}
-        <div className="mb-8">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">缺失紀錄</h2>
+        <div>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900">缺失紀錄</h2>
+              <p className="text-sm text-gray-500 mt-1">共 {stats.total} 筆</p>
+            </div>
             <button
               onClick={() => setShowDefectForm(true)}
-              className="px-6 py-3 bg-gray-900 text-white font-medium hover:bg-gray-800 transition-colors"
+              className="btn btn-primary btn-lg self-start md:self-auto"
             >
               + 新增缺失
             </button>
@@ -143,13 +150,16 @@ export default function ProjectDetail({
 
           {/* Defect Form Modal */}
           {showDefectForm && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end md:items-center justify-center z-50">
-              <div className="bg-white w-full md:max-w-2xl md:rounded-lg rounded-t-lg p-6 max-h-[90vh] overflow-y-auto">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-2xl font-bold">新增缺失</h3>
+            <div className="fixed inset-0 bg-black bg-opacity-40 flex items-end md:items-center justify-center z-50 p-4">
+              <div className="bg-white w-full md:max-w-2xl md:rounded-lg rounded-t-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto">
+                <div className="flex justify-between items-start mb-8">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">新增缺失</h3>
+                    <p className="text-sm text-gray-500 mt-1">記錄工程缺失詳情</p>
+                  </div>
                   <button
                     onClick={() => setShowDefectForm(false)}
-                    className="text-gray-400 hover:text-gray-600 text-2xl"
+                    className="text-gray-400 hover:text-gray-600 text-2xl w-8 h-8 flex items-center justify-center"
                   >
                     ×
                   </button>
@@ -164,13 +174,16 @@ export default function ProjectDetail({
 
           {/* Edit Defect Modal */}
           {editingDefect && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end md:items-center justify-center z-50">
-              <div className="bg-white w-full md:max-w-2xl md:rounded-lg rounded-t-lg p-6 max-h-[90vh] overflow-y-auto">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-2xl font-bold">編輯缺失</h3>
+            <div className="fixed inset-0 bg-black bg-opacity-40 flex items-end md:items-center justify-center z-50 p-4">
+              <div className="bg-white w-full md:max-w-2xl md:rounded-lg rounded-t-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto">
+                <div className="flex justify-between items-start mb-8">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">編輯缺失</h3>
+                    <p className="text-sm text-gray-500 mt-1">更新缺失資訊</p>
+                  </div>
                   <button
                     onClick={() => setEditingDefect(null)}
-                    className="text-gray-400 hover:text-gray-600 text-2xl"
+                    className="text-gray-400 hover:text-gray-600 text-2xl w-8 h-8 flex items-center justify-center"
                   >
                     ×
                   </button>
@@ -186,11 +199,14 @@ export default function ProjectDetail({
 
           {/* Defects List */}
           {project.defects.length === 0 ? (
-            <div className="bg-white border border-gray-200 p-12 text-center">
-              <p className="text-gray-500 mb-4">還沒有缺失紀錄</p>
+            <div className="card-white text-center py-16">
+              <div className="mb-4">
+                <span className="text-4xl">📝</span>
+              </div>
+              <p className="text-gray-600 mb-4 font-medium">還沒有缺失紀錄</p>
               <button
                 onClick={() => setShowDefectForm(true)}
-                className="text-gray-900 font-medium hover:underline"
+                className="btn btn-primary"
               >
                 新增第一筆缺失
               </button>
