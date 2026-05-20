@@ -41,16 +41,7 @@ const nextConfig: NextConfig = {
   // 禁用靜態預渲染以支持動態 Supabase 客戶端
   staticPageGenerationTimeout: 0,
 
-  // 重定向
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/auth/login",
-        permanent: false,
-      },
-    ];
-  },
+
 
   // 自訂 headers
   async headers() {
