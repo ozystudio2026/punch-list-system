@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     console.error('OAuth Error:', error, errorDescription)
     return NextResponse.redirect(
       new URL(
-        `/login?error=${encodeURIComponent(errorDescription || error)}`,
+        `/auth/login?error=${encodeURIComponent(errorDescription || error)}`,
         request.url
       )
     )
@@ -32,22 +32,22 @@ export async function GET(request: NextRequest) {
         console.error('Exchange Error:', exchangeError)
         return NextResponse.redirect(
           new URL(
-            `/login?error=${encodeURIComponent(exchangeError.message)}`,
+            `/auth/login?error=${encodeURIComponent(exchangeError.message)}`,
             request.url
           )
         )
       }
 
-      // 成功登入，重定向到儀表板
-      return NextResponse.redirect(new URL('/dashboard', request.url))
+      // 成功登入，重定向到專案頁面
+      return NextResponse.redirect(new URL('/projects', request.url))
     } catch (err) {
       console.error('Callback Error:', err)
       return NextResponse.redirect(
-        new URL('/login?error=Authentication failed', request.url)
+        new URL('/auth/login?error=Authentication failed', request.url)
       )
     }
   }
 
   // 沒有授權碼或錯誤，重定向到登入頁面
-  return NextResponse.redirect(new URL('/login?error=No authorization code', request.url))
+  return NextResponse.redirect(new URL('/auth/login?error=No authorization code', request.url))
 }

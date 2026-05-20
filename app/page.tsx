@@ -1,9 +1,9 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-
-export const dynamic = 'force-dynamic'
 
 export default function Home() {
   const router = useRouter()
@@ -12,5 +12,5 @@ export default function Home() {
     router.push('/auth/login')
   }, [router])
 
-  return null
+  return <div></div>
 }

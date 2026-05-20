@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // 輸出配置
+  output: 'standalone',
+
   // React 配置
   reactStrictMode: true,
   
@@ -35,7 +38,7 @@ const nextConfig = {
     isrMemoryCacheSize: 0,
   },
   
-  // 禁用靜態預渲染
+  // 禁用靜態預渲染以支持動態 Supabase 客戶端
   staticPageGenerationTimeout: 0,
 
   // 重定向

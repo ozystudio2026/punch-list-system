@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // 輸出配置
+  output: 'standalone',
+
   // React 配置
   reactStrictMode: true,
   
@@ -34,6 +37,9 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["@supabase/supabase-js"],
   },
+
+  // 禁用靜態預渲染以支持動態 Supabase 客戶端
+  staticPageGenerationTimeout: 0,
 
   // 重定向
   async redirects() {

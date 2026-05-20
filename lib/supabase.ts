@@ -5,8 +5,28 @@ export function createClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
+  // 在構建時或開發時允許缺失環境變數
   if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error('Missing Supabase environment variables')
+    // 返回一個虛擬客戶端以避免構建失敗
+    // 實際使用時會在客戶端拋出錯誤
+    if (typeof window === 'undefined') {
+      // 伺服器端：返回虛擬對象
+      return {
+        auth: {
+          signInWithOAuth: async () => ({ error: new Error('Supabase not configured') }),
+          signInWithPassword: async () => ({ error: new Error('Supabase not configured') }),
+          signUp: async () => ({ error: new Error('Supabase not configured') }),
+          signOut: async () => ({ error: new Error('Supabase not configured') }),
+          getUser: async () => ({ data: null, error: new Error('Supabase not configured') }),
+          getSession: async () => ({ data: null, error: new Error('Supabase not configured') }),
+        },
+        from: () => ({}),
+      } as any
+    }
+    // 客戶端：拋出錯誤以提醒開發者
+    throw new Error(
+      'Missing Supabase environment variables. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY'
+    )
   }
 
   return createSupabaseClient(supabaseUrl, supabaseAnonKey)
@@ -17,8 +37,20 @@ export function createServerClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
+  // 在構建時允許缺失環境變數
   if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error('Missing Supabase environment variables')
+    // 返回虛擬客戶端
+    return {
+      auth: {
+        signInWithOAuth: async () => ({ error: new Error('Supabase not configured') }),
+        signInWithPassword: async () => ({ error: new Error('Supabase not configured') }),
+        signUp: async () => ({ error: new Error('Supabase not configured') }),
+        signOut: async () => ({ error: new Error('Supabase not configured') }),
+        getUser: async () => ({ data: null, error: new Error('Supabase not configured') }),
+        getSession: async () => ({ data: null, error: new Error('Supabase not configured') }),
+      },
+      from: () => ({}),
+    } as any
   }
 
   return createSupabaseClient(supabaseUrl, supabaseAnonKey)
