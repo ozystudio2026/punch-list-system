@@ -68,7 +68,7 @@ export async function signUp(email: string, password: string, name: string) {
 export async function signOut() {
   const supabase = await createServerClient()
   await supabase.auth.signOut()
-  redirect('/login')
+  redirect('/auth/login')
 }
 
 // 取得目前使用者
