@@ -1,16 +1,10 @@
-'use client'
-
-export const dynamic = 'force-dynamic'
-
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { Suspense } from 'react';
+import InspectionApp from '@/components/InspectionApp';
 
 export default function Home() {
-  const router = useRouter()
-
-  useEffect(() => {
-    router.push('/auth/login')
-  }, [router])
-
-  return <div></div>
+  return (
+    <Suspense fallback={<div>載入中...</div>}>
+      <InspectionApp />
+    </Suspense>
+  );
 }

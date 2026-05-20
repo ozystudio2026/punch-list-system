@@ -1,27 +1,16 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OZY Studio Inspection System",
-  description: "iPad-optimized construction inspection and defect management system",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "OZY Studio Inspection",
-  },
-};
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  viewportFit: "cover",
+  title: "室內設計工程驗收系統",
+  description: "簡單高效的工程驗收管理系統",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="zh-TW">
       <body>{children}</body>
