@@ -69,13 +69,13 @@ export default function DefectForm({
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="w-full">
           <label className="label">狀態 *</label>
           <select
             value={formData.status}
             onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
-            className="select"
+            className="select w-full"
           >
             <option value="pending">待改善</option>
             <option value="completed">已完成</option>
@@ -83,12 +83,12 @@ export default function DefectForm({
           </select>
         </div>
 
-        <div>
+        <div className="w-full">
           <label className="label">優先級 *</label>
           <select
             value={formData.severity}
             onChange={(e) => setFormData({ ...formData, severity: e.target.value as any })}
-            className="select"
+            className="select w-full"
           >
             <option value="normal">一般</option>
             <option value="urgent">緊急</option>
@@ -117,17 +117,17 @@ export default function DefectForm({
         />
       </div>
 
-      <div className="flex gap-3 pt-4">
+      <div className="flex flex-col md:flex-row gap-3 pt-6 w-full">
         <button
           type="button"
           onClick={onCancel}
-          className="btn btn-secondary flex-1"
+          className="btn btn-secondary w-full md:flex-1"
         >
           取消
         </button>
         <button
           type="submit"
-          className="btn btn-primary flex-1"
+          className="btn btn-primary w-full md:flex-1"
         >
           {initialDefect ? '更新缺失' : '新增缺失'}
         </button>

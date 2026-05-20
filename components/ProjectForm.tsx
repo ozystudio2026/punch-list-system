@@ -34,65 +34,65 @@ export default function ProjectForm({ onSubmit, onCancel }: ProjectFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
+    <form onSubmit={handleSubmit} className="space-y-6 w-full">
+      <div className="w-full">
         <label className="label">案名 *</label>
         <input
           type="text"
           required
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="input"
+          className="input w-full"
           placeholder="例：台北市信義路辦公室"
         />
       </div>
 
-      <div>
+      <div className="w-full">
         <label className="label">業主姓名 *</label>
         <input
           type="text"
           required
           value={formData.owner}
           onChange={(e) => setFormData({ ...formData, owner: e.target.value })}
-          className="input"
+          className="input w-full"
           placeholder="例：王小姐"
         />
       </div>
 
-      <div>
+      <div className="w-full">
         <label className="label">地址 *</label>
         <input
           type="text"
           required
           value={formData.address}
           onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-          className="input"
+          className="input w-full"
           placeholder="例：台北市信義區信義路五段"
         />
       </div>
 
-      <div>
+      <div className="w-full">
         <label className="label">驗收日期 *</label>
         <input
           type="date"
           required
           value={formData.inspectionDate}
           onChange={(e) => setFormData({ ...formData, inspectionDate: e.target.value })}
-          className="input"
+          className="input w-full"
         />
       </div>
 
-      <div className="flex gap-3 pt-4">
+      <div className="flex flex-col md:flex-row gap-3 pt-6 w-full">
         <button
           type="button"
           onClick={onCancel}
-          className="btn btn-secondary flex-1"
+          className="btn btn-secondary w-full md:flex-1"
         >
           取消
         </button>
         <button
           type="submit"
-          className="btn btn-primary flex-1"
+          className="btn btn-primary w-full md:flex-1"
         >
           建立案件
         </button>

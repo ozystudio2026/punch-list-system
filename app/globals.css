@@ -22,12 +22,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -35,6 +38,16 @@ body {
   color: var(--color-gray-900);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* 禁止 iOS 縮放 - 防止 keyboard 導致的版面錯位 */
+input,
+textarea,
+select {
   font-size: 16px;
 }
 
@@ -104,15 +117,15 @@ p {
 /* Responsive Typography */
 @media (max-width: 768px) {
   h1 {
-    font-size: 1.875rem;
+    font-size: 1.75rem;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
   }
 
   h3 {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 }
 
@@ -169,6 +182,8 @@ p {
   border-radius: 8px;
   padding: 1.5rem;
   transition: all 200ms ease-in-out;
+  width: 100%;
+  max-width: 100%;
 }
 
 .card:hover {
@@ -182,6 +197,8 @@ p {
   border-radius: 8px;
   padding: 1.5rem;
   transition: all 200ms ease-in-out;
+  width: 100%;
+  max-width: 100%;
 }
 
 .card-white:hover {
@@ -204,6 +221,7 @@ p {
   transition: all 150ms ease-in-out;
   user-select: none;
   text-decoration: none;
+  min-height: 44px;
 }
 
 .btn:disabled {
@@ -236,6 +254,7 @@ p {
 .btn-sm {
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
+  min-height: 40px;
 }
 
 .btn-lg {
@@ -249,6 +268,7 @@ p {
 .textarea,
 .select {
   width: 100%;
+  max-width: 100%;
   padding: 0.875rem 1rem;
   font-size: 0.95rem;
   border: 1px solid var(--color-gray-300);
@@ -325,9 +345,11 @@ p {
 
 /* Utilities */
 .container {
-  max-width: 1280px;
+  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   padding: 0 1rem;
+  overflow-x: hidden;
 }
 
 .flex-center {
@@ -363,6 +385,91 @@ p {
 @media (max-width: 768px) {
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+  * {
+    max-width: 100%;
+  }
+
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .card,
+  .card-white {
+    padding: 1.25rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .btn-sm {
+    width: auto;
+    min-height: 44px;
+  }
+
+  .input,
+  .textarea,
+  .select {
+    font-size: 16px;
+    padding: 1rem;
+    min-height: 48px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .textarea {
+    min-height: 150px;
+  }
+
+  /* 表單直向排列 */
+  .flex-col-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .flex-col-mobile > * {
+    width: 100%;
+  }
+
+  /* 增加手機版 spacing */
+  .space-y-6 {
+    gap: 1.5rem;
+  }
+
+  .space-y-8 {
+    gap: 2rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.95rem;
   }
 }
 

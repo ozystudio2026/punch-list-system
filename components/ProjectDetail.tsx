@@ -65,35 +65,35 @@ export default function ProjectDetail({
   };
 
   return (
-    <main className="min-h-screen bg-beige-50">
-      <div className="container py-8 md:py-12">
+    <main className="min-h-screen bg-beige-50 w-full overflow-x-hidden">
+      <div className="container py-6 md:py-12 w-full">
         {/* Header */}
-        <div className="mb-8 md:mb-12">
+        <div className="mb-8 md:mb-12 w-full">
           <button
             onClick={onBack}
-            className="text-sm text-gray-500 hover:text-gray-900 mb-6 font-medium uppercase tracking-wide"
+            className="text-xs md:text-sm text-gray-500 hover:text-gray-900 mb-6 font-medium uppercase tracking-wide"
           >
             ← 返回列表
           </button>
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 w-full">
+            <div className="flex-1 min-w-0">
+              <h1 className="text-2xl md:text-4xl font-bold text-gray-900 mb-2 break-words">
                 {project.name}
               </h1>
-              <p className="text-gray-600">{project.owner}</p>
+              <p className="text-sm md:text-base text-gray-600 break-words">{project.owner}</p>
             </div>
             <button
               onClick={handleDeleteProject}
-              className="btn btn-secondary btn-sm self-start md:self-auto"
+              className="btn btn-secondary btn-sm self-start md:self-auto flex-shrink-0"
             >
-              刪除案件
+              削除案件
             </button>
           </div>
         </div>
 
         {/* Project Info Card */}
-        <div className="card-white mb-8 md:mb-12">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="card-white mb-8 md:mb-12 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             <div>
               <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">地址</p>
               <p className="font-semibold text-gray-900">{project.address}</p>
