@@ -22,5 +22,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return (
+    <html lang="zh-TW">
+      <body>{children}</body>
+    </html>
+  );
 }
